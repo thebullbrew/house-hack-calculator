@@ -1,0 +1,272 @@
+:root {
+  --bg: #13211A;
+  --bg2: #0E1A14;
+  --panel: #1A2B21;
+  --panel2: #203327;
+  --ivory: #F5F2E8;
+  --ivory-dim: #CFC9B8;
+  --gold: #B49A5B;
+  --gold-bright: #D4B96E;
+  --green: #7FB069;
+  --red: #C96F5A;
+  --line: rgba(180, 154, 91, 0.25);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ivory);
+  font-family: "Nunito Sans", system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.site-header {
+  text-align: center;
+  padding: 3rem 1.25rem 2rem;
+  background: radial-gradient(ellipse at 50% 0%, rgba(180,154,91,0.14), transparent 65%), var(--bg2);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  letter-spacing: 0.45em;
+  font-size: 0.72rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.site-header h1 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.2rem, 6vw, 3.4rem);
+  margin: 0 0 0.4rem;
+  font-weight: 700;
+  color: var(--ivory);
+}
+
+.tagline {
+  color: var(--ivory-dim);
+  font-style: italic;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.2rem;
+  margin: 0;
+}
+
+main { max-width: 1120px; margin: 0 auto; padding: 2rem 1.25rem 3rem; }
+
+/* Verdict banner */
+.verdict {
+  text-align: center;
+  background: linear-gradient(160deg, var(--panel2), var(--panel));
+  border: 1px solid var(--gold);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.35);
+}
+
+.verdict-label {
+  letter-spacing: 0.4em;
+  font-size: 0.7rem;
+  color: var(--gold);
+  font-weight: 700;
+  margin-bottom: 0.6rem;
+}
+
+.verdict-main {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(1.8rem, 5vw, 2.8rem);
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.verdict-main.free { color: var(--green); }
+.verdict-main.win { color: var(--gold-bright); }
+.verdict-main.lose { color: var(--red); }
+
+.verdict-sub {
+  color: var(--ivory-dim);
+  margin-top: 0.5rem;
+  font-size: 1rem;
+}
+
+/* Layout */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+@media (max-width: 860px) {
+  .grid { grid-template-columns: 1fr; }
+}
+
+.card {
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.75rem;
+}
+
+.card h2 {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: var(--gold);
+  font-size: 1.45rem;
+  margin: 1.75rem 0 0.9rem;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 0.4rem;
+}
+
+.card h2:first-child { margin-top: 0; }
+
+label {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--ivory-dim);
+  margin-bottom: 0.85rem;
+}
+
+label .sub {
+  display: block;
+  font-size: 0.78rem;
+  color: rgba(207,201,184,0.65);
+  font-style: italic;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 0.3rem;
+}
+
+.field span {
+  color: var(--gold);
+  font-weight: 700;
+  min-width: 1rem;
+}
+
+.field .hint { color: rgba(207,201,184,0.6); font-weight: 400; font-size: 0.85rem; }
+
+input[type="number"], select {
+  flex: 1;
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  color: var(--ivory);
+  border-radius: 8px;
+  padding: 0.65rem 0.8rem;
+  font-size: 1rem;
+  font-family: inherit;
+  width: 100%;
+}
+
+input[type="number"]:focus, select:focus {
+  outline: none;
+  border-color: var(--gold);
+  box-shadow: 0 0 0 2px rgba(180,154,91,0.2);
+}
+
+select option { background: var(--bg2); }
+
+.actions { margin-top: 1.5rem; display: flex; gap: 0.75rem; }
+
+.btn {
+  border: 1px solid var(--gold);
+  background: transparent;
+  color: var(--gold);
+  border-radius: 8px;
+  padding: 0.65rem 1.2rem;
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 0.9rem;
+  cursor: pointer;
+  letter-spacing: 0.05em;
+}
+
+.btn:hover { background: rgba(180,154,91,0.12); }
+
+/* Breakdown table */
+.breakdown { font-size: 0.95rem; }
+
+.bk-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0;
+  border-bottom: 1px dotted rgba(180,154,91,0.18);
+}
+
+.bk-row .k { color: var(--ivory-dim); }
+.bk-row .v { font-weight: 700; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.bk-row .v.neg { color: var(--green); }
+.bk-row.subtotal { border-bottom: 1px solid var(--line); }
+.bk-row.subtotal .k { color: var(--ivory); font-weight: 700; }
+.bk-row.total { border-bottom: none; padding-top: 0.8rem; }
+.bk-row.total .k {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  color: var(--gold-bright);
+  font-weight: 700;
+}
+.bk-row.total .v {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.5rem;
+  color: var(--gold-bright);
+}
+.bk-note {
+  font-size: 0.82rem;
+  color: rgba(207,201,184,0.7);
+  font-style: italic;
+  padding: 0.15rem 0 0.6rem;
+}
+
+/* Stats */
+.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; margin-top: 1rem; }
+
+.stat {
+  background: var(--bg2);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.stat .k { font-size: 0.78rem; color: var(--ivory-dim); letter-spacing: 0.04em; }
+.stat .v {
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--ivory);
+  font-variant-numeric: tabular-nums;
+}
+.stat .v.good { color: var(--green); }
+.stat .v.warn { color: var(--gold-bright); }
+.stat .v.bad { color: var(--red); }
+
+.fineprint {
+  font-size: 0.8rem;
+  color: rgba(207,201,184,0.6);
+  margin-top: 1.25rem;
+  font-style: italic;
+}
+
+.site-footer {
+  text-align: center;
+  padding: 2rem 1rem 3rem;
+  color: rgba(207,201,184,0.55);
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+}
+
+.site-footer span { color: var(--gold); letter-spacing: 0.3em; font-weight: 700; }
+
+@media (max-width: 520px) {
+  .stats { grid-template-columns: 1fr; }
+  .card { padding: 1.25rem; }
+}
