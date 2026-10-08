@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>House Hack Calculator — The Bull Brew</title>
+<meta name="description" content="Buy a multi-unit, live in one unit, let the tenants cover the mortgage. See your true out-of-pocket housing cost.">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#13211A">
+<link rel="icon" href="icons/icon-192.png" type="image/png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Nunito+Sans:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="brand">THE BULL BREW</div>
+  <h1>House Hack Calculator</h1>
+  <p class="tagline">Buy the multi-unit. Live in one. Let the tenants carry the mortgage.</p>
+</header>
+
+<main>
+  <section class="verdict" id="verdict" aria-live="polite">
+    <div class="verdict-label" id="verdictLabel">YOUR VERDICT</div>
+    <div class="verdict-main" id="verdictMain">Fill in the numbers →</div>
+    <div class="verdict-sub" id="verdictSub"></div>
+  </section>
+
+  <div class="grid">
+    <section class="card inputs">
+      <h2>The Property</h2>
+      <label>Purchase price
+        <div class="field"><span>$</span><input type="number" id="price" min="0" step="1000" value="450000"></div>
+      </label>
+      <label>Number of units
+        <div class="field"><input type="number" id="units" min="2" max="4" step="1" value="3"><span class="hint">2–4</span></div>
+      </label>
+      <label>Unit you live in
+        <select id="ownerUnit">
+          <option value="1">Unit 1</option>
+          <option value="2">Unit 2</option>
+          <option value="3">Unit 3</option>
+          <option value="4">Unit 4</option>
+        </select>
+      </label>
+
+      <h2>Financing</h2>
+      <label>Down payment
+        <div class="field"><input type="number" id="downPct" min="0" max="100" step="0.5" value="5"><span>%</span></div>
+      </label>
+      <label>Interest rate
+        <div class="field"><input type="number" id="rate" min="0" max="20" step="0.125" value="7"><span>%</span></div>
+      </label>
+      <label>Loan term
+        <select id="term">
+          <option value="360" selected>30 years</option>
+          <option value="240">20 years</option>
+          <option value="180">15 years</option>
+        </select>
+      </label>
+      <label>Monthly PMI <span class="sub">$0 if 20%+ down</span>
+        <div class="field"><span>$</span><input type="number" id="pmi" min="0" step="1" value="178"></div>
+      </label>
+
+      <h2>Taxes &amp; Insurance</h2>
+      <label>Annual property tax
+        <div class="field"><span>$</span><input type="number" id="tax" min="0" step="100" value="6000"></div>
+      </label>
+      <label>Annual homeowner's insurance
+        <div class="field"><span>$</span><input type="number" id="ins" min="0" step="50" value="1800"></div>
+      </label>
+
+      <h2>Rents</h2>
+      <label>Monthly rent per rented unit
+        <div class="field"><span>$</span><input type="number" id="rent" min="0" step="25" value="1600"></div>
+      </label>
+      <label>Vacancy allowance
+        <div class="field"><input type="number" id="vacPct" min="0" max="50" step="1" value="5"><span>%</span></div>
+      </label>
+
+      <h2>Monthly Operating Expenses</h2>
+      <label>Maintenance &amp; repairs
+        <div class="field"><span>$</span><input type="number" id="maint" min="0" step="10" value="200"></div>
+      </label>
+      <label>Capital expenditures reserve
+        <div class="field"><span>$</span><input type="number" id="capex" min="0" step="10" value="200"></div>
+      </label>
+      <label>Utilities you pay
+        <div class="field"><span>$</span><input type="number" id="util" min="0" step="10" value="150"></div>
+      </label>
+      <label>Property management <span class="sub">$0 if self-managed</span>
+        <div class="field"><span>$</span><input type="number" id="mgmt" min="0" step="10" value="0"></div>
+      </label>
+
+      <h2>The Comparison</h2>
+      <label>What you'd pay to rent a comparable place
+        <div class="field"><span>$</span><input type="number" id="altRent" min="0" step="25" value="1800"></div>
+      </label>
+
+      <div class="actions">
+        <button type="button" id="resetBtn" class="btn ghost">Reset demo</button>
+      </div>
+    </section>
+
+    <section class="card math">
+      <h2>Show Me The Math</h2>
+      <div id="breakdown" class="breakdown"></div>
+
+      <h2>Monthly Snapshot</h2>
+      <div class="stats">
+        <div class="stat"><span class="k">Total housing cost</span><span class="v" id="sTotal">—</span></div>
+        <div class="stat"><span class="k">Rental income</span><span class="v good" id="sIncome">—</span></div>
+        <div class="stat"><span class="k">Your out-of-pocket</span><span class="v" id="sOop">—</span></div>
+        <div class="stat"><span class="k">vs. renting</span><span class="v" id="sVs">—</span></div>
+      </div>
+      <p class="fineprint">Estimates only — not financial advice. Verify taxes, insurance, and loan terms for your market.</p>
+    </section>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <span>THE BULL BREW</span> · Free tools for real estate investors
+</footer>
+
+<script src="js/app.js"></script>
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+}
+</script>
+</body>
+</html>
